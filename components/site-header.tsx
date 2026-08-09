@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { SiteContent } from "@/lib/content";
 import { localePath, type Locale } from "@/lib/locales";
+import MobileMenu from "./mobile-menu";
 import ThemeToggle from "./theme-toggle";
 
 function LanguageLinks({ locale, content }: { locale: Locale; content: SiteContent }) {
@@ -67,28 +68,11 @@ export default function SiteHeader({
         <div className="flex items-center gap-4">
           <LanguageLinks locale={locale} content={content} />
           <ThemeToggle label={content.a11y.themeToggle} />
-          <details className="group relative md:hidden">
-            <summary
-              aria-label={content.a11y.menu}
-              className="flex h-9 cursor-pointer items-center rounded-sm border border-line px-3 font-mono text-xs text-muted transition-colors hover:border-ink hover:text-ink"
-            >
-              {content.a11y.menu}
-            </summary>
-            <nav
-              aria-label={content.a11y.primaryNav}
-              className="absolute right-0 top-12 flex w-44 flex-col border border-line bg-paper py-2 shadow-sm"
-            >
-              {content.header.nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="px-4 py-2.5 text-sm text-muted transition-colors hover:bg-paper-raised hover:text-ink"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-          </details>
+          <MobileMenu
+            label={content.a11y.menu}
+            navLabel={content.a11y.primaryNav}
+            items={content.header.nav}
+          />
         </div>
       </div>
     </header>

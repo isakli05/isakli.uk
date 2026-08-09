@@ -21,7 +21,7 @@ export default async function HomePage({
 
   return (
     <>
-      <Hero content={content} />
+      <Hero content={content} locale={locale} />
       <Work content={content} />
       <Experience content={content} />
       <Capabilities content={content} />

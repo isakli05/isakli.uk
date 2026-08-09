@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "isakli-uk",
+  "compatibility_date": "2026-08-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": ".open-next/worker.js",
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "routes": [
+    { "pattern": "isakli.uk", "custom_domain": true },
+    { "pattern": "www.isakli.uk", "custom_domain": true },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+}

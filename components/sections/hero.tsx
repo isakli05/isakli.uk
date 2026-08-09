@@ -1,9 +1,15 @@
 import type { SiteContent } from "@/lib/content";
-import { LINKS } from "@/lib/locales";
+import { LINKS, type Locale } from "@/lib/locales";
 import Portrait from "@/components/portrait";
 import Reveal from "@/components/reveal";
 
-export default function Hero({ content }: { content: SiteContent }) {
+export default function Hero({
+  content,
+  locale,
+}: {
+  content: SiteContent;
+  locale: Locale;
+}) {
   const { hero, a11y } = content;
 
   return (
@@ -53,7 +59,7 @@ export default function Hero({ content }: { content: SiteContent }) {
                 {hero.primaryCta}
               </a>
               <a
-                href={LINKS.cvEn}
+                href={locale === "tr" ? LINKS.cvTr : LINKS.cvEn}
                 download
                 className="inline-flex h-11 items-center border border-line px-6 text-sm font-medium text-ink transition-colors hover:border-ink"
               >
