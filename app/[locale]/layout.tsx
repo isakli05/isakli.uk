@@ -133,6 +133,17 @@ function personJsonLd(locale: Locale) {
   };
 }
 
+function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: `${SITE_URL}/`,
+    name: "İsa Kaya",
+    alternateName: "isakli.uk",
+  };
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -167,6 +178,14 @@ export default async function LocaleLayout({
           {children}
         </main>
         <SiteFooter locale={locale} content={content} />
+        {locale === "en" ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(websiteJsonLd()).replace(/</g, "\\u003c"),
+            }}
+          />
+        ) : null}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
